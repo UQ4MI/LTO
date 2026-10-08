@@ -2,7 +2,7 @@
 
 Research code accompanying **Physics-informed sampler for solver-free data generation in operator learning**, by Wen You, Shaoqian Zhou, Dixia Fan, and Xuhui Meng.
 
-[Manuscript](SSL_SciFM.pdf) · [1D reaction–diffusion](1D_reaction_diffusion/1D_reaction_diffusion) · [2D Poisson](2D_Poisson/2D_Poisson)
+[1D reaction–diffusion](1D_reaction_diffusion/1D_reaction_diffusion) · [2D Poisson](2D_Poisson/2D_Poisson)
 
 ## Overview
 
@@ -15,16 +15,6 @@ The examples combine the sampler with a function encoder (FE) and a latent Trans
 3. Train an FE to represent forcing and solution fields in a shared learned basis.
 4. Train a Transformer to map forcing coefficients and boundary/geometry information to solution coefficients.
 5. Reconstruct the solution using the pretrained basis; optionally refine its coefficients using a physics-informed objective.
-
-```mermaid
-flowchart LR
-    A[Random neural-field prior] --> B[PI-sampler: solution, forcing, boundary]
-    B --> C[Function encoder training]
-    C --> D[Latent coefficients and learned basis]
-    B --> E[Transformer operator training]
-    D --> E
-    E --> F[Solution reconstruction]
-```
 
 The supplied random-network samplers use explicit analytical derivative formulas. JAX automatic differentiation is also used for training and, in the 1D example, derivatives of the learned basis. The forcing distribution is induced by the solution prior; it is not independently prescribed during sampling.
 
